@@ -1,0 +1,39 @@
+.footer {
+  height: 5rem;
+  box-sizing: border-box;
+  height: min-content; /* 0px */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  background-color: var(--token-8c2e2696-2294-47af-a0cd-8fd8990b2d78, #111111);
+  overflow: visible;
+  align-content: center;
+  flex-wrap: nowrap;
+  border-color: rgba(0, 0, 0, 0.05);
+  color: white;
+  border-style: solid;
+  border-top-width: 1px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer--title {
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+.footer--navbar {
+  width: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.footer--logo {
+  filter: invert(100%);
+  width: 1.4rem;
+  height: 1.4rem;
+}

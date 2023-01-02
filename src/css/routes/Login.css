@@ -1,0 +1,39 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.form--title {
+  margin-bottom: 0.6em;
+}
+.input {
+  display: block;
+}
+.form--btn {
+  margin-top: 0.6em;
+}
+@media (max-width: 575.98px) {
+  .login {
+    display: block;
+    width: 100%;
+  }
+  .login.card {
+    padding: 3em;
+    box-shadow: none;
+    transition: none;
+  }
+
+  .login.card:hover {
+    box-shadow: none;
+  }
+  .form input {
+    width: 100%;
+    height: 2em;
+  }
+  .form--btn {
+    width: 100%;
+  }
+}

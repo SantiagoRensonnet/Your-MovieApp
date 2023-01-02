@@ -1,0 +1,32 @@
+.list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.table {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+  .table {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  .table {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Small Devices */
+@media (max-width: 575.98px) {
+  .table {
+    width: 100%;
+    display: block;
+    margin: 0;
+  }
+}
