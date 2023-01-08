@@ -1,15 +1,14 @@
 //Assets
-import searchLogoSolid from "../../assets/icons/search-bar/magnifying-glass-solid.svg";
 import searchLogoRegular from "../../assets/icons/search-bar/magnifying-glass-regular.svg";
 //Libraries
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MsgModal from "../Modals/MsgModal";
-import Modal from "react-modal";
-//Styles
-import "../../css/utils/SearchBar.css";
 
-export default function SearchBar({
+//Styles
+import "../../css/utils/SearchBarExpandable.css";
+
+export default function SearchBarExpandable({
   isSearchBarSelected,
   setIsSearchBarSelected,
 }) {
@@ -38,21 +37,32 @@ export default function SearchBar({
     navigate(`/search?q=${searchTerm}`);
   };
   return (
-    <div className={`search-bar ${isSearchBarSelected && "selected"}`}>
+    <>
       <MsgModal
         description={modalMsg}
         openModal={modalIsOpen}
         closeModal={closeModal}
       />
-      <form onSubmit={submitHandler}>
+      <form
+        onSubmit={submitHandler}
+        className={
+          isSearchBarSelected
+            ? "search-bar-expandable search-bar-selected"
+            : "search-bar-expandable"
+        }
+      >
         <div
-          className="search-bar--logo"
+          className="search-bar-expandable--logo"
           style={{ backgroundImage: `url(${searchLogoRegular}` }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsSearchBarSelected((prevState) => !prevState);
+          }}
         ></div>
         <input
           type="text"
-          className="search-bar--input"
-          placeholder="Search"
+          className="search-bar-expandable--input"
+          placeholder={isSearchBarSelected ? "Search" : ""}
           onClick={(e) => {
             e.stopPropagation();
             setIsSearchBarSelected(true);
@@ -61,6 +71,6 @@ export default function SearchBar({
           value={searchTerm}
         />
       </form>
-    </div>
+    </>
   );
 }

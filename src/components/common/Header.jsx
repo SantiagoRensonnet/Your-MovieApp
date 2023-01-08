@@ -3,8 +3,11 @@ import trendingLogo from "../../assets/icons/navbar/arrow-trend-up-solid.svg";
 //Libraries
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+//Hooks
+import { useResize } from "../../hooks/useResize";
 //Components
-import SearchBar from "../utils/SearchBar";
+import SearchBarFixed from "../utils/SearchBarFixed";
+import SearchBarExpandable from "../utils/SearchbarExpandable";
 import ChoiceModal from "../Modals/ChoiceModal";
 //Styles
 import "../../css/common/Header.css";
@@ -33,6 +36,8 @@ export default function Header({
   const [modalIsOpen, setModalIsOpen] = useState(false);
   //Navigate setup
   const navigate = useNavigate();
+  //Mobie Hook
+  const isMobile = useResize();
   //Events
   //Modal Handlers
   function openModal() {
@@ -60,7 +65,20 @@ export default function Header({
         closeModal={closeModal}
       />
       <div className="header">
-        <div className="header--title-container" onClick={() => openModal()}>
+        {isMobile && (
+          <SearchBarExpandable
+            isSearchBarSelected={isSearchBarSelected}
+            setIsSearchBarSelected={setIsSearchBarSelected}
+          />
+        )}
+        <div
+          className={
+            isMobile
+              ? "header--title-container  mobile"
+              : "header--title-container"
+          }
+          onClick={() => openModal()}
+        >
           {token && (
             <div className="avatar">
               <div className="initials">{getInitials(userName)}</div>
@@ -98,10 +116,12 @@ export default function Header({
           </div>
         </nav>
 
-        <SearchBar
-          isSearchBarSelected={isSearchBarSelected}
-          setIsSearchBarSelected={setIsSearchBarSelected}
-        />
+        {!isMobile && (
+          <SearchBarFixed
+            isSearchBarSelected={isSearchBarSelected}
+            setIsSearchBarSelected={setIsSearchBarSelected}
+          />
+        )}
       </div>
     </>
   );

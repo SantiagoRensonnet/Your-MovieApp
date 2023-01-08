@@ -48,7 +48,6 @@ const ChoiceModal = ({
   useEffect(() => {
     const handler = (e) => {
       setScreenIsSmall(e.matches);
-      console.log("small device", e.matches);
     };
     window
       .matchMedia("(max-width: 575.98px)")

@@ -25,6 +25,10 @@
   display: flex;
   cursor: pointer;
 }
+.header--title-container.mobile {
+  position: fixed;
+  left: 5rem;
+}
 .header--title {
   font-size: calc(1.5rem * 0.9);
   font-weight: 700;
