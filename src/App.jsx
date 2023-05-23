@@ -19,6 +19,7 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [userName, setUserName] = useState(localStorage.getItem("userName"));
   const [isSearchBarSelected, setIsSearchBarSelected] = useState(false);
+  const [selectedField, setSelectedField] = useState("");
 
   function updateToken(token) {
     setToken(token);
@@ -36,7 +37,10 @@ function App() {
   return (
     <div
       className="app-container"
-      onClick={() => setIsSearchBarSelected(false)}
+      onClick={() => {
+        setIsSearchBarSelected(false);
+        setSelectedField("");
+      }}
     >
       <Header
         userName={userName}
@@ -55,6 +59,8 @@ function App() {
                 token={token}
                 updateToken={updateToken}
                 updateUserName={updateUserName}
+                selectedField={selectedField}
+                setSelectedField={setSelectedField}
               />
             }
           />

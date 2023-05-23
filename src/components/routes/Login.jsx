@@ -1,3 +1,7 @@
+//Assets
+import emailLogo from "../../assets/icons/form/email.svg";
+import passwordLogo from "../../assets/icons/form/password.svg";
+import userLogo from "../../assets/icons/form/user.svg";
 //Libraries
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +25,13 @@ const generateRandomToken = () => {
   return randomNumStr;
 };
 
-export default function Login({ token, updateToken, updateUserName }) {
+export default function Login({
+  token,
+  updateToken,
+  updateUserName,
+  selectedField,
+  setSelectedField,
+}) {
   //Modal setup
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
@@ -93,30 +103,71 @@ export default function Login({ token, updateToken, updateUserName }) {
   });
 
   return (
-    <div className="login card">
+    <div onClick={() => setSelectedField("")} className="login-form--container">
       <MsgModal
         description={modalMsg}
         openModal={modalIsOpen}
         closeModal={closeModal}
       />
-      {/* <h2 className="form--title">Register</h2> */}
-      <form onSubmit={submitHandler} method="post" className="form">
-        <label className="input">
-          <span>Username</span>
-          <br />
-          <input type="text" name="userName" autoComplete="off" />
-        </label>
-        <label className="input">
-          <span>Email</span>
-          <br />
-          <input type="text" name="email" autoComplete="off" />
-        </label>
-        <label className="input">
-          <span>Password</span>
-          <br />
-          <input type="password" name="password" autoComplete="off" />
-        </label>
-        <button className="form--btn" type="submit">
+      <h2 className="form--title">Welcome</h2>
+      <h3 className="form--subtitle">This is just a dummy login</h3>
+      <p className="form--description">
+        No data will be storage. However once logged you can use the service
+        freely and all your preferences will be stored
+      </p>
+      <form onSubmit={submitHandler} method="post" className="login-form">
+        <div
+          className={`input-container ${
+            selectedField === "userName" && "input-selected"
+          }`}
+        >
+          <img className="input-logo" src={userLogo} alt="user-logo" />
+          <input
+            placeholder="Username"
+            type="text"
+            name="userName"
+            autoComplete="off"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedField("userName");
+            }}
+          />
+        </div>
+        <div
+          className={`input-container ${
+            selectedField === "email" && "input-selected"
+          }`}
+        >
+          <img className="input-logo" src={emailLogo} alt="email-logo" />
+          <input
+            placeholder="Email Address"
+            type="text"
+            name="email"
+            autoComplete="off"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedField("email");
+            }}
+          />
+        </div>
+        <div
+          className={`input-container ${
+            selectedField === "password" && "input-selected"
+          }`}
+        >
+          <img className="input-logo" src={passwordLogo} alt="passWord-logo" />
+          <input
+            placeholder="Password"
+            type="password"
+            name="password"
+            autoComplete="off"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedField("password");
+            }}
+          />
+        </div>
+        <button className="login-form-btn" type="submit">
           Login
         </button>
       </form>
